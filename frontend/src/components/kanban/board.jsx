@@ -20,8 +20,8 @@ import { Column } from "../columns/column";
 import { Task } from "../tasks/task";
 
 // BaseUrls used to make API calls to the backend server
-//export const baseUrl = "https://cyberpunk-kanban-board-backend.onrender.com/"
-export const baseUrl = "http://localhost:5000/";
+export const baseUrl = "https://cyberpunk-kanban-board-backend.onrender.com/";
+//export const baseUrl = "http://localhost:5000/";
 
 export function KanbanBoard() {
 	// State for managing the ID of the current active task during drag-and-drop operations
