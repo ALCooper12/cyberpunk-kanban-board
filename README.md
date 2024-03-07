@@ -8,7 +8,7 @@ This Task Manager Application was built using React for the frontend and Flask i
 
 ## Features 🚀
 
-The Task Manager Application provides the following features:
+The Task Manager provides the following features:
 
 -   Displays a list of tasks in any column (except the delete column)
 -   Adds a new task in whatever column you choose (except the delete column)
@@ -32,13 +32,13 @@ The Task Manager Application provides the following features:
 ## Decisions and Considerations 🤔
 
 As I was developing this Task manager, my decision of making a Cyberpunk-themed Kanban Board and the fact that my favorite thing about using one (at least in my experience) is dragging and dropping stuff, was the reason I wanted to include a drag and drop functionality using dnd kit. I choose that specific tool kit since it had the best documentation. I kept in mind that I wanted something simple and easy to use, and so my database has only 1 table and 5 API endpoints in the backend. Each endpoint was created with a specific purpose of its use in the UI. The frontend (also backend) includes comments explaining what's happening in my code so that you aren't kept in the dark. 
-And I made sure to keep organization of files and folder structure so that again, things are simple and easy to follow for the user or reviewer!
+And I made sure to keep organization of files and folder structure so that again, things are simple and easy to follow for the user or reviewer.
 
 ## Getting Started 🛠️
 
 ### Backend Setup
 
-1. **Activate Python Virtual Environment (Optional):** Now before you spin up your backend server, I recommend activating a Python virtual environment first! If you don't have one, you can create one by running the following command in the root directory of your project:
+1. **Activate Python Virtual Environment (Optional):** Now before you spin up your backend server, I recommend activating a Python virtual environment (I used Python 3.12.2) first! If you don't have one, you can create one by running the following command in the root directory of your project:
 
     ```bash
     python3 -m venv venv
@@ -59,7 +59,7 @@ And I made sure to keep organization of files and folder structure so that again
 
     ```bash
     cd backend
-    pip install -r requirements.txt
+    python3 -m pip install -r requirements.txt
     ```
 
 3. **Run Flask Server:** And finally start the Flask server by running the following command:
@@ -115,6 +115,6 @@ And I made sure to keep organization of files and folder structure so that again
 
 ## Usage 🖥️
 
-Once both the backend and frontend servers are running, you can access the Task Manager Application by visiting [http://localhost:3000/](http://localhost:3000/) in your web browser.
+Once both the backend and frontend servers are running, you can access the Task Manager by visiting [http://localhost:3000/](http://localhost:3000/) in your web browser.
 
 Awesome! You're all set up now 🥳 Have fun!! 🎉
