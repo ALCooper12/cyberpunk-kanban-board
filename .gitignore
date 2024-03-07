@@ -9,8 +9,7 @@
 # testing
 /coverage
 
-# production
-/build
+# Take out the /build .gitignore file so that render.com can deploy from the frontend
 
 # misc
 .DS_Store

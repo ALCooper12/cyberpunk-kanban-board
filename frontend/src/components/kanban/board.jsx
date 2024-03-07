@@ -19,6 +19,10 @@ import { ColumnsContainer } from "../columns/columnsContainer";
 import { Column } from "../columns/column";
 import { Task } from "../tasks/task";
 
+// BaseUrls used to make API calls to the backend server
+//export const baseUrl = "https://cyberpunk-kanban-board-backend.onrender.com/"
+export const baseUrl = "http://localhost:5000/";
+
 export function KanbanBoard() {
 	// State for managing the ID of the current active task during drag-and-drop operations
 	const [activeId, setActiveId] = useState();
@@ -36,7 +40,7 @@ export function KanbanBoard() {
 	// to run only once after the initial render
 	useEffect(() => {
 		// Fetch all tasks from the backend
-		fetch("http://localhost:5000/tasks")
+		fetch(`${baseUrl}tasks`)
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error("Failed to fetch tasks...");
@@ -140,7 +144,7 @@ export function KanbanBoard() {
 	// Helper function to update a task in the backend database
 	const updateTaskInBackend = (taskId, updatedTask) => {
 		// Sends a PUT request to update the task with the provided taskId
-		fetch(`http://localhost:5000/tasks/${taskId}/update`, {
+		fetch(`${baseUrl}tasks/${taskId}/update`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
@@ -296,7 +300,7 @@ export function KanbanBoard() {
 	// Handles the deletion of a task
 	const handleDeleteTask = (taskId) => {
 		// Make DELETE request to the backend endpoint
-		fetch(`http://localhost:5000/tasks/${taskId}/delete`, {
+		fetch(`${baseUrl}tasks/${taskId}/delete`, {
 			method: "DELETE",
 		})
 			.then((response) => {

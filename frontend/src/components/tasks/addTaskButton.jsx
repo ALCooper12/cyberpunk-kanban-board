@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./task.css";
+import { baseUrl } from "../kanban/board";
 
 // Component for rendering the Add Task button
 export function AddTask({ column, handleAddTask }) {
@@ -31,7 +32,7 @@ export function AddTask({ column, handleAddTask }) {
 		};
 
 		try {
-			const response = await fetch("http://localhost:5000/tasks/create", {
+			const response = await fetch(`${baseUrl}tasks/create`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
