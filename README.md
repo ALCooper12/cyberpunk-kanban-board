@@ -2,6 +2,11 @@
 
 I decided to build a Kanban Board since that is the first thing I think of when I imagine a Task Manager. It features a sleek, Cyberpunk-themed design in order to visualize the uniqueness and creativity in the process of managing tasks from other similarly built applications. The functionality is a simple, but fun-to-use drag and drop mechanism of moving tasks into the current provided columns: On Hold, To Do, In Progress, Done, and Delete. Overall, I had a lot of fun making this and I hope you enjoy it!
 
+## Live Demo 👀
+Click this link if you just can't wait to check it out, or you just don't feel like setting it up yourself
+
+[cyberpunk-kanban-board-frontend.onrender.com/](https://cyberpunk-kanban-board-frontend.onrender.com/)
+
 ## Architecture Overview 🏗️
 
 This Task Manager Application was built using React for the frontend and Flask in the backend. The frontend is responsible for providing the user interface and the drag and drop functionality, while the backend handles data storage and management.
@@ -91,7 +96,24 @@ And I made sure to keep organization of files and folder structure so that again
     npm install
     ```
 
-3. **Run React Development Server:** Start the React development server by running the following command:
+3. **Make a tiny change to 2 files:** Since this Task Manager is being deployed on Render, the `package.json` and `board.jsx` files need to be changed so that the Task Manager can be ran on your localhost ports 3000 and 5000 on your computer. 
+    
+    First go to line 47 within `package.json` and change the proxy value:
+   
+    ```bash
+    "proxy": "http://localhost:5000/"
+    ```
+    
+    Next, uncomment out the code on line 24, and then comment out line 23 within the `board.jsx` file:
+   
+    ```bash
+    //export const baseUrl = "https://cyberpunk-kanban-board-backend.onrender.com/";
+    export const baseUrl = "http://localhost:5000/";
+    ```
+    
+    Now you should be able to render the frontend on your localhost:3000 and the backend on your localhost:5000
+
+4. **Run React Server:** Start the React server by running the following command:
 
     ```bash
     npm start
@@ -115,6 +137,6 @@ And I made sure to keep organization of files and folder structure so that again
 
 ## Usage 🖥️
 
-Once both the backend and frontend servers are running, you can access the Task Manager by visiting [http://localhost:3000/](http://localhost:3000/) in your web browser.
+Once both the backend and frontend servers are running, you can access the Task Manager UI by visiting [http://localhost:3000/](http://localhost:3000/) in your web browser.
 
 Awesome! You're all set up now 🥳 Have fun!! 🎉
