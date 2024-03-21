@@ -1,19 +1,19 @@
-# Northspyre Take-Home Project for React & Flask Web Application
+# Cyberpunk-Themed Kanban Board 🤖
 
-I decided to build a Kanban Board since that is the first thing I think of when I imagine a Task Manager. It features a sleek, Cyberpunk-themed design in order to visualize the uniqueness and creativity in the process of managing tasks from other similarly built applications. The functionality is a simple, but fun-to-use drag and drop mechanism of moving tasks into the current provided columns: On Hold, To Do, In Progress, Done, and Delete. Overall, I had a lot of fun making this and I hope you enjoy it!
+It features a sleek, Cyberpunk-themed design in order to visualize the uniqueness and creativity from other similarly built applications. The functionality is a simple, but fun-to-use drag and drop mechanism of moving tasks from and to the current provided columns: On Hold, To Do, In Progress, Done, and Delete. Overall, I had a lot of fun making this and I hope you enjoy it!
 
 ## Live Demo 👀
-Click this link if you just can't wait to check it out, or you just don't feel like setting it up yourself
+Click this link if you just can't wait to check it out, or you just don't feel like setting it up yourself:
 
 [cyberpunk-kanban-board-frontend.onrender.com/](https://cyberpunk-kanban-board-frontend.onrender.com/)
 
 ## Architecture Overview 🏗️
 
-This Task Manager Application was built using React for the frontend and Flask in the backend. The frontend is responsible for providing the user interface and the drag and drop functionality, while the backend handles data storage and management.
+This Kanban Board Application was built using React for the frontend and Flask in the backend. The frontend is responsible for providing the user interface and the drag and drop functionality, while the backend handles data storage and management.
 
 ## Features 🚀
 
-The Task Manager provides the following features:
+The Kanban Board provides the following features:
 
 -   Displays a list of tasks in any column (except the delete column)
 -   Adds a new task in whatever column you choose (except the delete column)
@@ -33,11 +33,6 @@ The Task Manager provides the following features:
 -   Framework: Flask
 -   Languages: Python
 -   Database: SQLite
-
-## Decisions and Considerations 🤔
-
-As I was developing this Task manager, my decision of making a Cyberpunk-themed Kanban Board and the fact that my favorite thing about using one (at least in my experience) is dragging and dropping stuff, was the reason I wanted to include a drag and drop functionality using dnd kit. I choose that specific tool kit since it had the best documentation. I kept in mind that I wanted something simple and easy to use, and so my database has only 1 table and 5 API endpoints in the backend. Each endpoint was created with a specific purpose of its use in the UI. The frontend (also backend) includes comments explaining what's happening in my code so that you aren't kept in the dark. 
-And I made sure to keep organization of files and folder structure so that again, things are simple and easy to follow for the user or reviewer.
 
 ## Getting Started 🛠️
 
@@ -96,7 +91,7 @@ And I made sure to keep organization of files and folder structure so that again
     npm install
     ```
 
-3. **Make a tiny change to 2 files:** Since this Task Manager is being deployed on Render, the `package.json` and `board.jsx` files need to be changed so that the Task Manager can be ran on your localhost ports 3000 and 5000 on your computer. 
+3. **Make a tiny change to 2 files:** Since this app is being deployed on Render, the `package.json` and `board.jsx` files need to be changed so that the app can be ran on your localhost ports 3000 and 5000 on your computer. 
     
     First go to line 47 within `package.json` and change the proxy value:
    
@@ -137,6 +132,6 @@ And I made sure to keep organization of files and folder structure so that again
 
 ## Usage 🖥️
 
-Once both the backend and frontend servers are running, you can access the Task Manager UI by visiting [http://localhost:3000/](http://localhost:3000/) in your web browser.
+Once both the backend and frontend servers are running, you can access the UI by visiting [http://localhost:3000/](http://localhost:3000/) in your web browser.
 
 Awesome! You're all set up now 🥳 Have fun!! 🎉
