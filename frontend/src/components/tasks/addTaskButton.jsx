@@ -32,6 +32,7 @@ export function AddTask({ column, handleAddTask }) {
 		};
 
 		try {
+			// Sends a POST request to the backend API to create a task
 			const response = await fetch(`${baseUrl}tasks/create`, {
 				method: "POST",
 				headers: {

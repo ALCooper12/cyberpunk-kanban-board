@@ -35,6 +35,9 @@ export function KanbanBoard() {
 		{ column: "delete", title: "Delete", tasks: [] },
 	]);
 
+	// ColumnIds needed in order to use SortableContext from dnd kit for sorting functionalities
+	const columnIds = useMemo(() => columns.map((col) => col.id), [columns]);
+
 	// useEffect hook to fetch tasks when the component mounts
 	// eslint-line is used since we want the useEffect hook
 	// to run only once after the initial render
@@ -61,9 +64,6 @@ export function KanbanBoard() {
 			});
 	}, []); // eslint-disable-line
 
-	// ColumnIds needed in order to use SortableContext from dnd kit for sorting functionalities
-	const columnIds = useMemo(() => columns.map((col) => col.id), [columns]);
-
 	// Initializes the sensors for detecting pointer and keyboard interactions within a sortable context
 	const sensors = useSensors(
 		useSensor(PointerSensor),
@@ -76,6 +76,8 @@ export function KanbanBoard() {
 	const handleDragStart = (event) => {
 		const { active } = event;
 		const { id } = active;
+		console.log("Drag started:", event.active.id);
+
 		setActiveId(id);
 	};
 
@@ -94,6 +96,7 @@ export function KanbanBoard() {
 		const overId = over ? over.id : null;
 		const activeColumn = findColumn(activeId);
 		const overColumn = findColumn(overId);
+		console.log("Drag over:", event.active.id, event.over.id);
 
 		// Checks if an activeColumn or overColumn is missing, or if they are equal
 		if (!activeColumn || !overColumn || activeColumn === overColumn) {
@@ -141,27 +144,6 @@ export function KanbanBoard() {
 		});
 	};
 
-	// Helper function to update a task in the backend database
-	const updateTaskInBackend = (taskId, updatedTask) => {
-		// Sends a PUT request to update the task with the provided taskId
-		fetch(`${baseUrl}tasks/${taskId}/update`, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(updatedTask),
-		})
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error("Failed to update task");
-				}
-			})
-			.catch((error) => {
-				console.error(error);
-				// Handle error
-			});
-	};
-
 	/* 
 	Handles the end of a drag operation. It receives an event object containing information about the active and over elements.
 	It retrieves the IDs of the active and over elements. It also retrieves the corresponding columns for these elements.
@@ -173,6 +155,7 @@ export function KanbanBoard() {
 		const overId = over ? over.id : null;
 		const activeColumn = findColumn(activeId);
 		const overColumn = findColumn(overId);
+		console.log("Drag ended:", event.active.id, event.over.id);
 
 		// Checks if an activeColumn or overColumn is missing, or if they are not the same
 		if (!activeColumn || !overColumn || activeColumn !== overColumn) {
@@ -235,6 +218,17 @@ export function KanbanBoard() {
 		}
 	};
 
+	// Finds a task from an activeId
+	const findTask = (activeId) => {
+		for (const column of columns) {
+			const foundTask = column.tasks.find((task) => task.id === activeId);
+			if (foundTask) {
+				return foundTask;
+			}
+		}
+		return null;
+	};
+
 	// Finds a column from an activeId
 	const findColumn = (activeId) => {
 		if (!activeId) {
@@ -264,17 +258,6 @@ export function KanbanBoard() {
 		return columnWithTaskId ?? null;
 	};
 
-	// Finds a task from an activeId
-	const findTask = (activeId) => {
-		for (const column of columns) {
-			const foundTask = column.tasks.find((task) => task.id === activeId);
-			if (foundTask) {
-				return foundTask;
-			}
-		}
-		return null;
-	};
-
 	// Handles adding a task to a column
 	const handleAddTask = (columnId, newTask) => {
 		// Check if the column is the "done" column in order to set the completed property
@@ -295,6 +278,47 @@ export function KanbanBoard() {
 		// Updates the Columns after adding a task
 		setColumns(updatedColumns);
 		return newTask;
+	};
+
+	// Function to update a specific task in a column
+	const updateTask = (columnId, taskId, updatedTask) => {
+		setColumns((prevColumns) => {
+			const newColumns = prevColumns.map((column) =>
+				column.column === columnId
+					? {
+							...column,
+							tasks: column.tasks.map((task) =>
+								task.id === taskId ? updatedTask : task
+							),
+					  }
+					: column
+			);
+
+			return newColumns;
+		});
+	};
+
+	// Handles updating the edit of a task in the backend database
+	const updateTaskInBackend = (taskId, updatedTask) => {
+		console.log("Updating task in backend:", taskId, updatedTask);
+
+		// Sends a PUT request to update the task with the provided taskId
+		fetch(`${baseUrl}tasks/${taskId}/update`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(updatedTask),
+		})
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Failed to update task");
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+				// Handle error
+			});
 	};
 
 	// Handles the deletion of a task
@@ -369,6 +393,7 @@ export function KanbanBoard() {
 										showAddButton={
 											column.column !== "delete"
 										}
+										updateTask={updateTask}
 									/>
 								))}
 								{/* Using the DragOverlay component from dnd kit, it renders the overlay for the active dragging task */}
@@ -384,6 +409,7 @@ export function KanbanBoard() {
 													findTask(activeId)
 														?.description
 												}
+												updateTask={updateTask}
 											/>
 										</div>
 									) : null}

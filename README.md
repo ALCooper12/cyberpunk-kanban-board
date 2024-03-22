@@ -1,8 +1,9 @@
 # Cyberpunk-Themed Kanban Board 🤖
 
-It features a sleek, Cyberpunk-themed design in order to visualize the uniqueness and creativity from other similarly built applications. The functionality is a simple, but fun-to-use drag and drop mechanism of moving tasks from and to the current provided columns: On Hold, To Do, In Progress, Done, and Delete. Overall, I had a lot of fun making this and I hope you enjoy it!
+It features a sleek, Cyberpunk-themed design in order to visualize the uniqueness and creativity from other similarly built applications. The functionality is a simple, but fun-to-use drag and drop mechanism of moving tasks from and to the current provided columns: On Hold, To Do, In Progress, Done, and Delete. Overall, I had a lot of fun making this and I hope you enjoy it!!
 
 ## Live Demo 👀
+
 Click this link if you just can't wait to check it out, or you just don't feel like setting it up yourself:
 
 [cyberpunk-kanban-board-frontend.onrender.com/](https://cyberpunk-kanban-board-frontend.onrender.com/)
@@ -16,10 +17,11 @@ This Kanban Board Application was built using React for the frontend and Flask i
 The Kanban Board provides the following features:
 
 -   Displays a list of tasks in any column (except the delete column)
--   Adds a new task in whatever column you choose (except the delete column)
 -   Drag and Drop functionality of tasks into columns
--   Ability to mark a task as completed
--   Deletes a task
+-   Add a new task
+-   Edit a task
+-   Mark a task as completed
+-   Delete a task
 
 ### Frontend
 
@@ -50,9 +52,11 @@ The Kanban Board provides the following features:
     source venv/bin/activate  # For Unix/Linux
     venv\Scripts\activate     # For Windows
     ```
+
     If everything works out, you should see something like this in your terminal:
+
     ```bash
-    (.venv) arianna@Ariannas-MBP 
+    (.venv) arianna@Ariannas-MBP
     ```
 
 2. **Install Dependencies:** Then you should navigate to the backend directory and install the required Python dependencies:
@@ -91,21 +95,21 @@ The Kanban Board provides the following features:
     npm install
     ```
 
-3. **Make a tiny change to 2 files:** Since this app is being deployed on Render, the `package.json` and `board.jsx` files need to be changed so that the app can be ran on your localhost ports 3000 and 5000 on your computer. 
-    
+3. **Make a tiny change to 2 files:** Since this app is being deployed on Render, the `package.json` and `board.jsx` files need to be changed so that the app can be ran on your localhost ports 3000 and 5000 on your computer.
+
     First go to line 47 within `package.json` and change the proxy value:
-   
+
     ```bash
     "proxy": "http://localhost:5000/"
     ```
-    
+
     Next, uncomment out the code on line 24, and then comment out line 23 within the `board.jsx` file:
-   
+
     ```bash
     //export const baseUrl = "https://cyberpunk-kanban-board-backend.onrender.com/";
     export const baseUrl = "http://localhost:5000/";
     ```
-    
+
     Now you should be able to render the frontend on your localhost:3000 and the backend on your localhost:5000
 
 4. **Run React Server:** Start the React server by running the following command:
@@ -134,4 +138,4 @@ The Kanban Board provides the following features:
 
 Once both the backend and frontend servers are running, you can access the UI by visiting [http://localhost:3000/](http://localhost:3000/) in your web browser.
 
-Awesome! You're all set up now 🥳 Have fun!! 🎉
+Awesome! You're all set up now 🥳 Have fun! 🎉
