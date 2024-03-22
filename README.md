@@ -10,7 +10,7 @@ Click this link if you just can't wait to check it out, or you just don't feel l
 
 ## Architecture Overview 🏗️
 
-This Kanban Board Application was built using React for the frontend and Flask in the backend. The frontend is responsible for providing the user interface and the drag and drop functionality, while the backend handles data storage and management.
+This Kanban Board Application was built using React for the frontend and Flask in the backend. The frontend is responsible for providing the user interface and the drag and drop functionality, while the backend handles data storage and API management.
 
 ## Features 🚀
 
@@ -19,8 +19,7 @@ The Kanban Board provides the following features:
 -   Displays a list of tasks in any column (except the delete column)
 -   Drag and Drop functionality of tasks into columns
 -   Add a new task
--   Edit a task
--   Mark a task as completed
+-   Edit a task (by double-clicking on it)
 -   Delete a task
 
 ### Frontend
@@ -28,7 +27,7 @@ The Kanban Board provides the following features:
 -   Framework: React
 -   Languages: JavaScript
 -   Styling: CSS and Bootstrap
--   Dependencies: [dnd kit](https://dndkit.com/) and React Router
+-   Dependencies: [dnd kit](https://dndkit.com/)
 
 ### Backend
 
