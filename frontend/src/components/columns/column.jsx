@@ -14,9 +14,10 @@ export function Column({
 	column,
 	title,
 	tasks,
-	handleAddTask, // Function that handles adding a new task
+	handleAddTask,
 	alterDeleteColumn, // Flag indicating whether it's the delete column or not
 	showAddButton, // Flag indicating whether to show the Add Task button
+	updateTask,
 }) {
 	// Memoized value to compute and store the IDs of tasks in the tasks array.
 	// This ensures that the taskIds array is only recomputed when the tasks array changes
@@ -56,6 +57,8 @@ export function Column({
 									id={task.id}
 									title={task.title}
 									description={task.description}
+									columnId={column}
+									updateTask={updateTask}
 								/>
 							))}
 						</div>
